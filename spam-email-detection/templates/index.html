@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spam or ham</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <script>
+        if (window.location.pathname === "{{ url_for('.home') }}") {
+            
+        } else {
+            setTimeout(function() {
+                window.location.href = "{{ url_for('.home') }}";  // Redirect to home after 5 seconds
+            }, 5000);
+        }
+    </script> -->
+    
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Email Spam Prediction</h1>
+        <hr>
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="email_content" placeholder="Enter Your Email content" autofocus required autocomplete="off"><br><br>
+            <button type="submit" class="btn">Predict</button>
+        </form>
+        
+        <div class="error-message">
+            {% if error_message %}
+                {{ error_message }}
+            {% endif %}
+        </div>
+        <br>
+        <br>
+        {% if prediction_text %}
+            <h4 class="prediction-text">
+                {{ prediction_text }}
+            </h4>
+            <Center><a href="/" class="homebutton" >←Go back to home</a></Center>
+        {% endif %}
+    <!-- <p>{{ prediction_text }}</p> -->
+
+        
+
+    </div>
+</body>
+</html>
+
